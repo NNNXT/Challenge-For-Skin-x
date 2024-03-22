@@ -26,7 +26,7 @@ GoRouter _router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: NavigatorRoutePath.home.path,
-      builder: (_, __) => const MainNavigation(),
+      builder: (_, __) => const MainNavigationScreen(),
       routes: const <RouteBase>[],
     ),
   ],

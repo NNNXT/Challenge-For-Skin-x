@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Screen
+import 'package:challenge_for_skin_x/constant.dart';
 import 'package:challenge_for_skin_x/src/features/main_navigation/screen.dart';
 
 enum NavigatorRoutePath { home }
@@ -36,8 +37,9 @@ MaterialApp materialApp(BuildContext context) => MaterialApp.router(
       title: 'Challange',
       routerConfig: _router,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        primarySwatch: Colors.purple,
+        scaffoldBackgroundColor: scaffoldBackgroundColor,
+        primaryTextTheme: Typography().white,
+        textTheme: Typography().white,
       ),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

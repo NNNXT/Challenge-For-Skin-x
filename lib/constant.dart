@@ -1,3 +1,10 @@
+// Flutter Modules
+import 'package:flutter/material.dart';
+
+// color
+Color mainColor = const Color(0xFF1DB954);
+Color scaffoldBackgroundColor = const Color(0xFF121212);
+
 // Spotify
 String spotifyCustomUriScheme = 'my.challenge.skinx.app';
 String spotifyRedirectUri = 'my.challenge.skinx.app://callback';

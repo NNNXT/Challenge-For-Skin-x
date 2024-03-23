@@ -8,19 +8,16 @@ part 'user_profie.g.dart';
 
 @JsonSerializable(createToJson: false)
 class UserProfile {
-  String country;
-
   @JsonKey(name: 'display_name')
   String displayName;
 
-  String email;
-
   List<Images>? images;
 
+  String get toLargestImage =>
+      (images ?? []).reduce((largest, image) => image.width > largest.width ? image : largest).url;
+
   UserProfile({
-    this.country = '',
     this.displayName = '',
-    this.email = '',
     this.images,
   });
 

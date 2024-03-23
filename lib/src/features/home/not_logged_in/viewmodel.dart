@@ -8,7 +8,7 @@ import 'package:oauth2_client/authorization_response.dart';
 import 'package:oauth2_client/spotify_oauth2_client.dart';
 
 // Internal Modules
-import 'package:challenge_for_skin_x/base/base_widget.dart';
+import 'package:challenge_for_skin_x/base/base_extension.dart';
 import 'package:challenge_for_skin_x/constant.dart';
 import 'package:challenge_for_skin_x/env/spotify_client.dart';
 import 'package:challenge_for_skin_x/provider/main_navigation_provider.dart';

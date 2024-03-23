@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Internal Modules
-import 'package:challenge_for_skin_x/base/base_extension.dart';
+import 'package:challenge_for_skin_x/base/base_widget.dart';
 import 'package:challenge_for_skin_x/src/features/home/not_logged_in/viewmodel.dart';
 
 class NotLoggedInScreen extends StatefulWidget {

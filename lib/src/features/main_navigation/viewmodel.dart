@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Internal Modules
-import 'package:challenge_for_skin_x/base/base_widget.dart';
+import 'package:challenge_for_skin_x/base/base_extension.dart';
 import 'package:challenge_for_skin_x/provider/main_navigation_provider.dart';
 
 class MainNavigationViewModel extends ChangeNotifier {

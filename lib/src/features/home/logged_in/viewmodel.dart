@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // Internal Modules
-import 'package:challenge_for_skin_x/base/base_widget.dart';
+import 'package:challenge_for_skin_x/base/base_extension.dart';
 import 'package:challenge_for_skin_x/constant.dart';
 import 'package:challenge_for_skin_x/model/user_profile/user_profie.dart';
 import 'package:challenge_for_skin_x/provider/main_navigation_provider.dart';

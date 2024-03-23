@@ -6,6 +6,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // Internal Modules
 import 'package:challenge_for_skin_x/constant.dart';
+import 'package:challenge_for_skin_x/model/user_profile/user_profie.dart';
+import 'package:challenge_for_skin_x/model/user_profile/user_profile_response.dart';
 import 'package:challenge_for_skin_x/network/repository/me_repository.dart';
 
 class MainNavigationProvider extends ChangeNotifier {
@@ -13,12 +15,10 @@ class MainNavigationProvider extends ChangeNotifier {
   MeRepository _meRepository;
 
   bool _isLoggedIn = false;
-  String _userImage = '';
-  String _displayName = '';
+  UserProfile? _userProfile;
 
   bool get isLoggedIn => _isLoggedIn;
-  String get userImage => _userImage;
-  String get displayName => _displayName;
+  UserProfile? get userProfile => _userProfile;
 
   Future<void> getUserToken() async {
     String userToken = await _secureStorage.read(key: accesTokenKey) ?? '';
@@ -26,9 +26,8 @@ class MainNavigationProvider extends ChangeNotifier {
     _isLoggedIn = userToken.isNotEmpty;
 
     if (_isLoggedIn) {
-      var response = await _meRepository.requestCurrentUserProfile();
-      _displayName = response.result?.displayName ?? '';
-      _userImage = response.result?.images?[1].url ?? '';
+      UserProfileResponse response = await _meRepository.requestCurrentUserProfile();
+      _userProfile = response.result;
     }
     notifyListeners();
   }

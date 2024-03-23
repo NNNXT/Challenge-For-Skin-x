@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Internal Modules
 import 'package:challenge_for_skin_x/base/base_extension.dart';
-import 'package:challenge_for_skin_x/src/features/home/logged_in/viewmode.dart';
+import 'package:challenge_for_skin_x/src/features/home/logged_in/viewmodel.dart';
 
 class LoggedInScreen extends StatefulWidget {
   const LoggedInScreen({super.key});
@@ -25,13 +25,13 @@ class _LoggedInScreenState extends State<LoggedInScreen> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(160),
                       child: Image.network(
-                        model.userImage,
+                        model.userProfile?.images?[1].url ?? '',
                         width: 160,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Text(model.displayName),
+                      child: Text(model.userProfile?.displayName ?? ''),
                     ),
                   ],
                 ),

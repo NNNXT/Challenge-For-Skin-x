@@ -5,17 +5,33 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-// Screen
+// Internal Modules
 import 'package:challenge_for_skin_x/constant.dart';
-import 'package:challenge_for_skin_x/src/features/main_navigation/screen.dart';
 
-enum NavigatorRoutePath { home }
+// Screen
+import 'package:challenge_for_skin_x/src/features/main_navigation/screen.dart';
+import 'package:challenge_for_skin_x/src/features/playlist_deatil/screen.dart';
+
+enum NavigatorRoutePath { home, playlistDetail }
 
 extension NavigatorRoutePathExtension on NavigatorRoutePath {
   String get path {
     switch (this) {
       case NavigatorRoutePath.home:
         return '/';
+
+      case NavigatorRoutePath.playlistDetail:
+        return 'playlist/detail';
+
+      default:
+        return '';
+    }
+  }
+
+  String get goPath {
+    switch (this) {
+      case NavigatorRoutePath.playlistDetail:
+        return '/playlist/detail';
 
       default:
         return '';
@@ -28,7 +44,15 @@ GoRouter _router = GoRouter(
     GoRoute(
       path: NavigatorRoutePath.home.path,
       builder: (_, __) => const MainNavigationScreen(),
-      routes: const <RouteBase>[],
+      routes: <RouteBase>[
+        GoRoute(
+          path: NavigatorRoutePath.playlistDetail.path,
+          builder: (_, state) {
+            String playlistId = state.extra as String;
+            return PlaylistDetailScreen(playlistId: playlistId);
+          },
+        ),
+      ],
     ),
   ],
 );

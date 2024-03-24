@@ -12,5 +12,8 @@
     },
     "search": {
         "search_hint": "What do you want to listen to?"
+    },
+    "playlist_detail": {
+        "owner": "Owner : {}"
     }
 }

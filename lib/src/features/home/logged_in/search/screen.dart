@@ -73,8 +73,9 @@ class _SearchScreenState extends State<SearchScreen> {
                       Item item = listSearchs[index];
                       return CustomListTile(
                         imageUrl: (item.images ?? []).isEmpty ? '' : item.toLargestImage,
-                        title: item.name,
+                        playlistId: item.id,
                         subtitle: item.description,
+                        title: item.name,
                       );
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 8),

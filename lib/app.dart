@@ -12,6 +12,7 @@ import 'package:challenge_for_skin_x/provider/main_navigation_provider.dart';
 
 // Repository
 import 'package:challenge_for_skin_x/network/repository/me_repository.dart';
+import 'package:challenge_for_skin_x/network/repository/playlist_repository.dart';
 import 'package:challenge_for_skin_x/network/repository/search_repository.dart';
 
 class App extends StatelessWidget {
@@ -21,6 +22,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     List<SingleChildWidget> repositories = [
       Provider.value(value: MeRepository()),
+      Provider.value(value: PlaylistRepository()),
       Provider.value(value: SearchRepository()),
     ];
 

@@ -40,9 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (_, index) {
                   Item item = listItems[index];
                   return CustomListTile(
+                    playlistId: item.id,
                     imageUrl: (item.images ?? []).isEmpty ? '' : item.toLargestImage,
-                    title: item.name,
                     subtitle: item.description,
+                    title: item.name,
                   );
                 },
                 separatorBuilder: (_, __) => const SizedBox(height: 8),

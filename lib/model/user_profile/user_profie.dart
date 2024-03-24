@@ -10,6 +10,7 @@ part 'user_profie.g.dart';
 class UserProfile {
   @JsonKey(name: 'display_name')
   String displayName;
+  String id;
 
   List<Images>? images;
 
@@ -18,6 +19,7 @@ class UserProfile {
 
   UserProfile({
     this.displayName = '',
+    this.id = '',
     this.images,
   });
 

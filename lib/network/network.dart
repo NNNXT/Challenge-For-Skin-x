@@ -34,9 +34,9 @@ abstract class BaseRepository {
         onError: (e, handler) async {
           if (e.response?.statusCode == 401) {
             await refetchSpotifyAccessToken();
-            String accessToken = await _secureStorage.read(key: accesTokenKey) ?? '';
+            String accessTokenNew = await _secureStorage.read(key: accesTokenKey) ?? '';
 
-            e.requestOptions.headers['Authorization'] = 'Bearer $accessToken';
+            e.requestOptions.headers['Authorization'] = 'Bearer $accessTokenNew';
 
             return handler.resolve(await _dio.fetch(e.requestOptions));
           } else {

@@ -73,7 +73,8 @@ class _PlaylistDetailScreenState extends State<PlaylistDetailScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            playlistImage(imageUrl: playlistDetail.toLargestImage),
+                            if ((playlistDetail.images ?? []).isNotEmpty)
+                              playlistImage(imageUrl: playlistDetail.toLargestImage),
                             if (playlistDetail.description.isNotEmpty) ...[
                               const SizedBox(height: 8),
                               Text(playlistDetail.description),
@@ -92,9 +93,11 @@ class _PlaylistDetailScreenState extends State<PlaylistDetailScreen> {
 
                                 return ListTile(
                                   contentPadding: EdgeInsets.zero,
-                                  leading: CustomNetworkImage(
-                                    imageUrl: track?.album?.toLargestImage ?? '',
-                                  ),
+                                  leading: (track?.album?.toLargestImage ?? '').isEmpty
+                                      ? const SizedBox.shrink()
+                                      : CustomNetworkImage(
+                                          imageUrl: track?.album?.toLargestImage ?? '',
+                                        ),
                                   title: Text(
                                     track?.name ?? '',
                                     maxLines: 1,
@@ -106,6 +109,13 @@ class _PlaylistDetailScreenState extends State<PlaylistDetailScreen> {
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(color: Colors.white),
+                                  ),
+                                  trailing: IconButton(
+                                    icon: const Icon(
+                                      Icons.more_vert,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {},
                                   ),
                                 );
                               },

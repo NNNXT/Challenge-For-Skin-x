@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 // Internal Modules
 import 'package:challenge_for_skin_x/base/base_extension.dart';
+import 'package:challenge_for_skin_x/model/playlist/browse_playlist_response.dart';
 import 'package:challenge_for_skin_x/model/playlist/item.dart';
-import 'package:challenge_for_skin_x/model/playlist/playlist_response.dart';
-import 'package:challenge_for_skin_x/network/repository/me_repository.dart';
+import 'package:challenge_for_skin_x/network/repository/browse_repository.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  final MeRepository _meRepository;
+  final BrowseRepository _browseRepository;
 
   List<Item> listItems = [];
 
@@ -21,12 +21,12 @@ class HomeViewModel extends ChangeNotifier {
     if (isPlaylistLastPage && !reload) return;
     var begin = reload ? 0 : listItems.length;
 
-    PlaylistResponse response = await _meRepository.requestMePlaylist(
+    BrowsePlaylistResponse response = await _browseRepository.requestBrowsePlaylist(
       offset: begin,
       limit: limit,
     );
 
-    List<Item> listItemsRes = response.result?.items ?? [];
+    List<Item> listItemsRes = response.result!.playlists?.items ?? [];
 
     if (reload) {
       listItems.clear();
@@ -39,5 +39,5 @@ class HomeViewModel extends ChangeNotifier {
 
   HomeViewModel({
     required BuildContext context,
-  }) : _meRepository = context.provide();
+  }) : _browseRepository = context.provide();
 }

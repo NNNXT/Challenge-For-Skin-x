@@ -8,21 +8,23 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     required this.onPressed,
     required this.text,
+    this.isMainColor = true,
     super.key,
   });
 
   final Function() onPressed;
   final String text;
+  final bool isMainColor;
 
   @override
   Widget build(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: mainColor,
+          backgroundColor: isMainColor ? mainColor : Colors.white,
         ),
         onPressed: onPressed,
         child: Text(
           text,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: isMainColor ? Colors.white : mainColor),
         ),
       );
 }

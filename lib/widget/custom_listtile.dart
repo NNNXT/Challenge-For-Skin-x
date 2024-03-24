@@ -30,7 +30,12 @@ class CustomListTile extends StatelessWidget {
             extra: playlistId,
           );
         },
-        leading: CustomNetworkImage(imageUrl: imageUrl),
+        leading: imageUrl.isEmpty
+            ? const SizedBox(
+                width: 64,
+                height: 64,
+              )
+            : CustomNetworkImage(imageUrl: imageUrl),
         title: Text(
           title,
           maxLines: 1,

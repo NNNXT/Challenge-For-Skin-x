@@ -2,6 +2,9 @@
     "main": {
         "title": "Challenge For SkinX"
     },
+    "common": {
+        "cancel": "Cancel"
+    },
     "logged_in": {
         "home": "Home",
         "search": "Search",
@@ -15,5 +18,10 @@
     },
     "playlist_detail": {
         "owner": "Owner : {}"
+    },
+    "library": {
+        "set_playlist_name": "Grive your playlist a name",
+        "set_playlist_hint": "My playlist",
+        "create": "Create"
     }
 }

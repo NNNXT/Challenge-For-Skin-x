@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:challenge_for_skin_x/base/base_widget.dart';
 import 'package:challenge_for_skin_x/constant.dart';
 import 'package:challenge_for_skin_x/src/features/home/logged_in/home/screen.dart';
+import 'package:challenge_for_skin_x/src/features/home/logged_in/library/screen.dart';
 import 'package:challenge_for_skin_x/src/features/home/logged_in/search/screen.dart';
 import 'package:challenge_for_skin_x/src/features/home/logged_in/viewmodel.dart';
 import 'package:challenge_for_skin_x/widget/custom_icon.dart';
@@ -32,17 +33,12 @@ class _LoggedInScreenState extends State<LoggedInScreen> {
                 style: const TextStyle(color: Colors.white),
               ),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                model.logout();
-              },
-            ),
             body: IndexedStack(
               index: selectedIndex,
-              children: [
-                const HomeScreen(),
-                const SearchScreen(),
-                Container(),
+              children: const [
+                HomeScreen(),
+                SearchScreen(),
+                LibraryScreen(),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(

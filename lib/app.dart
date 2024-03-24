@@ -1,4 +1,5 @@
 // Flutter Modules
+import 'package:challenge_for_skin_x/network/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 
 // External Modules
@@ -11,6 +12,7 @@ import 'package:challenge_for_skin_x/navigator_route.dart';
 import 'package:challenge_for_skin_x/provider/main_navigation_provider.dart';
 
 // Repository
+import 'package:challenge_for_skin_x/network/repository/browse_repository.dart';
 import 'package:challenge_for_skin_x/network/repository/me_repository.dart';
 import 'package:challenge_for_skin_x/network/repository/playlist_repository.dart';
 import 'package:challenge_for_skin_x/network/repository/search_repository.dart';
@@ -21,9 +23,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<SingleChildWidget> repositories = [
+      Provider.value(value: BrowseRepository()),
       Provider.value(value: MeRepository()),
       Provider.value(value: PlaylistRepository()),
       Provider.value(value: SearchRepository()),
+      Provider.value(value: UserRepository()),
     ];
 
     List<SingleChildWidget> dependentProviders = [

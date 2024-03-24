@@ -1,4 +1,7 @@
 {
+    "main": {
+        "title": "Challenge For SkinX"
+    },
     "logged_in": {
         "home": "Home",
         "search": "Search",
@@ -6,5 +9,8 @@
     },
     "not_logged_in": {
         "login": "Please Login First"
+    },
+    "search": {
+        "search_hint": "What do you want to listen to?"
     }
 }

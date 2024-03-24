@@ -6,7 +6,7 @@ import 'package:challenge_for_skin_x/base/base_extension.dart';
 import 'package:challenge_for_skin_x/base/base_widget.dart';
 import 'package:challenge_for_skin_x/model/playlist/item.dart';
 import 'package:challenge_for_skin_x/src/features/home/logged_in/home/viewmodel.dart';
-import 'package:challenge_for_skin_x/widget/custom_network_image.dart';
+import 'package:challenge_for_skin_x/widget/custom_listtile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,14 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: listItems.length,
                 itemBuilder: (_, index) {
                   Item item = listItems[index];
-                  return ListTile(
-                    leading: CustomNetworkImage(
-                      imageUrl: (item.images ?? []).isEmpty ? '' : item.toLargestImage,
-                    ),
-                    title: Text(
-                      item.name,
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                  return CustomListTile(
+                    imageUrl: (item.images ?? []).isEmpty ? '' : item.toLargestImage,
+                    title: item.name,
+                    subtitle: item.description,
                   );
                 },
                 separatorBuilder: (_, __) => const SizedBox(height: 8),

@@ -1,8 +1,10 @@
 // Flutter Modules
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // External Modules
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/authorization_response.dart';
 import 'package:oauth2_client/spotify_oauth2_client.dart';
@@ -44,12 +46,20 @@ class NotLoggedInViewModel extends ChangeNotifier {
         key: refreshTokenKey,
         value: accessToken.refreshToken,
       );
-
-      await _mainNavigationProvider.getUserToken();
-    } catch (error) {
-      // Handle authorization or token request errors here
-      return;
+    } catch (e) {
+      var err = e as PlatformException;
+      await _secureStorage.delete(
+        key: accesTokenKey,
+      );
+      await _secureStorage.delete(
+        key: refreshTokenKey,
+      );
+      Fluttertoast.showToast(
+        msg: err.message ?? '',
+      );
     }
+
+    await _mainNavigationProvider.getUserToken();
   }
 
   NotLoggedInViewModel({

@@ -7,14 +7,20 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 // Internal Modules
 import 'package:challenge_for_skin_x/base/base_extension.dart';
 import 'package:challenge_for_skin_x/constant.dart';
-import 'package:challenge_for_skin_x/model/user_profile/user_profie.dart';
 import 'package:challenge_for_skin_x/provider/main_navigation_provider.dart';
 
 class LoggedInViewModel extends ChangeNotifier {
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
   final MainNavigationProvider _mainNavigationProvider;
 
-  UserProfile? get userProfile => _mainNavigationProvider.userProfile;
+  int _selectedIndex = 0;
+
+  int get selectedIndex => _selectedIndex;
+
+  void selectIndex(int index) {
+    _selectedIndex = index;
+    notifyListeners();
+  }
 
   Future<void> getUserToken() async {
     await _mainNavigationProvider.getUserToken();

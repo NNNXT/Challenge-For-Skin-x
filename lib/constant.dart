@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // color
 Color mainColor = const Color(0xFF1DB954);
-Color scaffoldBackgroundColor = const Color(0xFF121212);
+Color backgroundColor = const Color(0xFF121212);
 
 // Spotify
 String spotifyCustomUriScheme = 'my.challenge.skinx.app';
@@ -16,6 +16,7 @@ List<String> spotifyScope = [
   'user-modify-playback-state',
   'user-read-currently-playing',
   'user-read-email',
+  'playlist-read-private',
 ];
 
 // Secure Storage

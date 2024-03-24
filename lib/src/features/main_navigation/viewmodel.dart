@@ -8,7 +8,7 @@ import 'package:challenge_for_skin_x/provider/main_navigation_provider.dart';
 class MainNavigationViewModel extends ChangeNotifier {
   final MainNavigationProvider _mainNavigationProvider;
 
-  bool get isLoggedIn => _mainNavigationProvider.isLoggedIn;
+  bool? get isLoggedIn => _mainNavigationProvider.isLoggedIn;
 
   Future<void> getUserToken() async {
     await _mainNavigationProvider.getUserToken();

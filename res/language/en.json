@@ -1,6 +1,8 @@
 {
     "logged_in": {
-        "logout": "Logout"
+        "home": "Home",
+        "search": "Search",
+        "library": "Library"
     },
     "not_logged_in": {
         "login": "Please Login First"

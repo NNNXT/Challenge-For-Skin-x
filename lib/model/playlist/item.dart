@@ -4,22 +4,27 @@ import 'package:json_annotation/json_annotation.dart';
 // Internal Modules
 import 'package:challenge_for_skin_x/model/images.dart';
 
-part 'user_profie.g.dart';
+part 'item.g.dart';
 
 @JsonSerializable(createToJson: false)
-class UserProfile {
-  @JsonKey(name: 'display_name')
-  String displayName;
+class Item {
+  String description;
+
+  String id;
 
   List<Images>? images;
 
   String get toLargestImage =>
       (images ?? []).reduce((largest, image) => image.width > largest.width ? image : largest).url;
 
-  UserProfile({
-    this.displayName = '',
+  String name;
+
+  Item({
+    this.description = '',
+    this.id = '',
     this.images,
+    this.name = '',
   });
 
-  factory UserProfile.fromJson(Map<String, dynamic> json) => _$UserProfileFromJson(json);
+  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 }

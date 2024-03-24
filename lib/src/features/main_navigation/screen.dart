@@ -16,6 +16,10 @@ class MainNavigationScreen extends StatelessWidget {
           await model.getUserToken();
         },
         model: MainNavigationViewModel(context: context),
-        builder: (_, model, __) => model.isLoggedIn ? const LoggedInScreen() : const NotLoggedInScreen(),
+        builder: (_, model, __) => model.isLoggedIn == null
+            ? const SizedBox.shrink()
+            : model.isLoggedIn ?? false
+                ? const LoggedInScreen()
+                : const NotLoggedInScreen(),
       );
 }

@@ -37,7 +37,7 @@ MaterialApp materialApp(BuildContext context) => MaterialApp.router(
       title: 'Challange',
       routerConfig: _router,
       theme: ThemeData(
-        scaffoldBackgroundColor: scaffoldBackgroundColor,
+        scaffoldBackgroundColor: backgroundColor,
         primaryTextTheme: Typography().white,
         textTheme: Typography().white,
       ),

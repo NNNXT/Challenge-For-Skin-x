@@ -14,10 +14,10 @@ class MainNavigationProvider extends ChangeNotifier {
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
   MeRepository _meRepository;
 
-  bool _isLoggedIn = false;
+  bool? _isLoggedIn;
   UserProfile? _userProfile;
 
-  bool get isLoggedIn => _isLoggedIn;
+  bool? get isLoggedIn => _isLoggedIn;
   UserProfile? get userProfile => _userProfile;
 
   Future<void> getUserToken() async {
@@ -25,7 +25,7 @@ class MainNavigationProvider extends ChangeNotifier {
 
     _isLoggedIn = userToken.isNotEmpty;
 
-    if (_isLoggedIn) {
+    if (_isLoggedIn ?? false) {
       UserProfileResponse response = await _meRepository.requestCurrentUserProfile();
       _userProfile = response.result;
     }

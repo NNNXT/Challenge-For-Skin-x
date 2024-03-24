@@ -1,6 +1,7 @@
 // External Modules
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:oauth2_client/spotify_oauth2_client.dart';
 
@@ -38,6 +39,11 @@ abstract class BaseRepository {
             e.requestOptions.headers['Authorization'] = 'Bearer $accessToken';
 
             return handler.resolve(await _dio.fetch(e.requestOptions));
+          } else {
+            Fluttertoast.showToast(
+              msg: e.response?.statusMessage ?? '',
+              timeInSecForIosWeb: 8,
+            );
           }
           return handler.next(e);
         },
@@ -59,13 +65,25 @@ abstract class BaseRepository {
       clientSecret: SpotifyClient.clientSecret,
     );
 
-    await _secureStorage.write(
-      key: accesTokenKey,
-      value: accessToken.accessToken,
-    );
-    await _secureStorage.write(
-      key: refreshTokenKey,
-      value: accessToken.refreshToken,
-    );
+    if (accessToken.error == null) {
+      await _secureStorage.write(
+        key: accesTokenKey,
+        value: accessToken.accessToken,
+      );
+      await _secureStorage.write(
+        key: refreshTokenKey,
+        value: accessToken.refreshToken,
+      );
+    } else {
+      await _secureStorage.delete(
+        key: accesTokenKey,
+      );
+      await _secureStorage.delete(
+        key: refreshTokenKey,
+      );
+      Fluttertoast.showToast(
+        msg: accessToken.error ?? '',
+      );
+    }
   }
 }

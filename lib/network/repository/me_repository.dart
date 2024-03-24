@@ -17,13 +17,16 @@ class MeRepository extends BaseRepository {
   Future<PlaylistResponse> requestMePlaylist({
     required int offset,
     required int limit,
+    bool sendParameters = true,
   }) async {
     var response = await dataProvider.get<Map<String, dynamic>>(
       _requestMePlaylistPath,
-      queryParameters: {
-        'offset': offset,
-        'limit': limit,
-      },
+      queryParameters: sendParameters
+          ? {
+              'offset': offset,
+              'limit': limit,
+            }
+          : {},
     );
     return PlaylistResponse.fromJson(response.data);
   }

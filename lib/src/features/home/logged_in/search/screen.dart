@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 // External Modules
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:go_router/go_router.dart';
 
 // Internal Modules
 import 'package:challenge_for_skin_x/base/base_extension.dart';
 import 'package:challenge_for_skin_x/base/base_widget.dart';
 import 'package:challenge_for_skin_x/constant.dart';
 import 'package:challenge_for_skin_x/model/playlist/item.dart';
+import 'package:challenge_for_skin_x/navigator_route.dart';
 import 'package:challenge_for_skin_x/src/features/home/logged_in/search/viewmodel.dart';
 import 'package:challenge_for_skin_x/widget/custom_icon.dart';
 import 'package:challenge_for_skin_x/widget/custom_listtile.dart';
@@ -71,11 +73,18 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemCount: listSearchs.length,
                     itemBuilder: (_, index) {
                       Item item = listSearchs[index];
+                      String playlistId = item.id;
                       return CustomListTile(
                         imageUrl: (item.images ?? []).isEmpty ? '' : item.toLargestImage,
-                        playlistId: item.id,
+                        playlistId: playlistId,
                         subtitle: item.description,
                         title: item.name,
+                        onTap: () {
+                          context.go(
+                            NavigatorRoutePath.playlistDetail.goPath,
+                            extra: playlistId,
+                          );
+                        },
                       );
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 8),

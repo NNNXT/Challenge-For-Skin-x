@@ -1,11 +1,7 @@
 // Flutter Modules
 import 'package:flutter/material.dart';
 
-// External Modules
-import 'package:go_router/go_router.dart';
-
 // Internal Modules
-import 'package:challenge_for_skin_x/navigator_route.dart';
 import 'package:challenge_for_skin_x/widget/custom_network_image.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -14,6 +10,9 @@ class CustomListTile extends StatelessWidget {
     required this.playlistId,
     required this.subtitle,
     required this.title,
+    required this.onTap,
+    this.icon = Icons.arrow_forward_ios,
+    this.iconSize = 16,
     super.key,
   });
 
@@ -21,15 +20,13 @@ class CustomListTile extends StatelessWidget {
   final String playlistId;
   final String subtitle;
   final String title;
+  final IconData icon;
+  final double iconSize;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) => ListTile(
-        onTap: () {
-          context.go(
-            NavigatorRoutePath.playlistDetail.goPath,
-            extra: playlistId,
-          );
-        },
+        onTap: onTap,
         leading: imageUrl.isEmpty
             ? const SizedBox(
                 width: 64,
@@ -50,10 +47,10 @@ class CustomListTile extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(color: Colors.white),
               ),
-        trailing: const Icon(
-          Icons.arrow_forward_ios,
+        trailing: Icon(
+          icon,
           color: Colors.white,
-          size: 16,
+          size: iconSize,
         ),
       );
 }

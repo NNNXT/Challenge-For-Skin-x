@@ -29,4 +29,19 @@ class PlaylistRepository extends BaseRepository {
     );
     return TracksResponse.fromJson(response.data);
   }
+
+  Future<void> addItemsToPlasyList({
+    required String playlistId,
+    required String trackURI,
+  }) async {
+    await dataProvider.post<Map<String, dynamic>>(
+      '$_requestPlaylistDetail$playlistId/tracks',
+      data: {
+        "uris": [
+          trackURI,
+        ],
+        "position": 0,
+      },
+    );
+  }
 }

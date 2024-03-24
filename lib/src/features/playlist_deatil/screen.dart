@@ -9,9 +9,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:challenge_for_skin_x/base/base_extension.dart';
 import 'package:challenge_for_skin_x/base/base_widget.dart';
 import 'package:challenge_for_skin_x/constant.dart';
+import 'package:challenge_for_skin_x/model/playlist/item.dart';
 import 'package:challenge_for_skin_x/model/playlist/playlist_detail.dart';
 import 'package:challenge_for_skin_x/model/playlist/track.dart';
 import 'package:challenge_for_skin_x/src/features/playlist_deatil/viewmodel.dart';
+import 'package:challenge_for_skin_x/widget/custom_listtile.dart';
 import 'package:challenge_for_skin_x/widget/custom_network_image.dart';
 
 class PlaylistDetailScreen extends StatefulWidget {
@@ -115,7 +117,52 @@ class _PlaylistDetailScreenState extends State<PlaylistDetailScreen> {
                                       Icons.more_vert,
                                       color: Colors.white,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      if (model.listItems.isEmpty) {
+                                        await model.requestPlaylist();
+                                      }
+
+                                      if (!context.mounted) return;
+                                      showModalBottomSheet<void>(
+                                        context: context,
+                                        builder: (context) => ColoredBox(
+                                          color: backgroundColor,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              Expanded(
+                                                child: ListView.separated(
+                                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                                  itemCount: model.listItems.length,
+                                                  itemBuilder: (_, index) {
+                                                    Item item = model.listItems[index];
+                                                    String itemId = item.id;
+                                                    return CustomListTile(
+                                                      onTap: () async {
+                                                        await model.addItemsToPlasyList(
+                                                          playlistId: itemId,
+                                                          trackURI: track?.uri ?? '',
+                                                        );
+                                                        if (!context.mounted) return;
+                                                        Navigator.pop(context);
+                                                      },
+                                                      playlistId: itemId,
+                                                      imageUrl: (item.images ?? []).isEmpty ? '' : item.toLargestImage,
+                                                      subtitle: item.description,
+                                                      title: item.name,
+                                                      icon: Icons.playlist_add,
+                                                      iconSize: 24,
+                                                    );
+                                                  },
+                                                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 );
                               },

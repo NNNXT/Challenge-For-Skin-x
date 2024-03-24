@@ -24,12 +24,15 @@ class Track {
 
   String get artistsDisplay => artists?.map((artist) => artist.name).join(", ") ?? "";
 
+  String uri;
+
   Track({
     this.id = '',
     this.name = '',
     this.durationMs = 0,
     this.album,
     this.artists,
+    this.uri = '',
   });
 
   factory Track.fromJson(Map<String, dynamic> json) => _$TrackFromJson(json);

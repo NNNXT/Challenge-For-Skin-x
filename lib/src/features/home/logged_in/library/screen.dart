@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 
 // External Modules
 import 'package:easy_localization/easy_localization.dart';
+import 'package:go_router/go_router.dart';
 
 // Internal Modules
 import 'package:challenge_for_skin_x/base/base_extension.dart';
 import 'package:challenge_for_skin_x/base/base_widget.dart';
 import 'package:challenge_for_skin_x/constant.dart';
 import 'package:challenge_for_skin_x/model/playlist/item.dart';
+import 'package:challenge_for_skin_x/navigator_route.dart';
 import 'package:challenge_for_skin_x/src/features/home/logged_in/library/viewmodel.dart';
 import 'package:challenge_for_skin_x/widget/custom_button.dart';
 import 'package:challenge_for_skin_x/widget/custom_listtile.dart';
@@ -47,11 +49,18 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     itemCount: listItems.length,
                     itemBuilder: (_, index) {
                       Item item = listItems[index];
+                      String playlistId = item.id;
                       return CustomListTile(
-                        playlistId: item.id,
+                        playlistId: playlistId,
                         imageUrl: (item.images ?? []).isEmpty ? '' : item.toLargestImage,
                         subtitle: item.description,
                         title: item.name,
+                        onTap: () {
+                          context.go(
+                            NavigatorRoutePath.playlistDetail.goPath,
+                            extra: playlistId,
+                          );
+                        },
                       );
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 8),
@@ -60,19 +69,22 @@ class _LibraryScreenState extends State<LibraryScreen> {
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  backgroundColor: mainColor,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-                  onPressed: () async {
-                    _textFieldController.clear();
-                    await _displayTextInputDialog(
-                      context: context,
-                      model: model,
-                    );
-                  },
-                  child: const Icon(
-                    Icons.add,
-                    size: 36,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: FloatingActionButton(
+                    backgroundColor: mainColor,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                    onPressed: () async {
+                      _textFieldController.clear();
+                      await _displayTextInputDialog(
+                        context: context,
+                        model: model,
+                      );
+                    },
+                    child: const Icon(
+                      Icons.add,
+                      size: 36,
+                    ),
                   ),
                 ),
               ),

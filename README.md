@@ -1,16 +1,45 @@
-# challenge_for_skin_x
 
-A new Flutter project.
+# Challenge for SkinX
+## How to Use
+**Step 1:**
+Download or clone this repo by using the link below:
 
-## Getting Started
+```
+https://github.com/NNNXT/Challenge-For-Skin-x.git
+```
+**Step 2:**
+Go to project root and paste file ```spotify_client.env```
+```
+https://gist.github.com/NNNXT/fb569cb70fc01fbf5b0cc22112b07fdb
+```
+**Step 3:**
+Go to project root and execute the following command in console to get the required dependencies:
+```
+flutter pub get
+```
 
-This project is a starting point for a Flutter application.
+**Step 3:**
 
-A few resources to get you started if this is your first Flutter project:
+This project uses `inject` library that works with code generation, execute the following command to generate files:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+flutter packages pub run build_runner build --delete-conflicting-outputs
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+or watch command in order to keep the source code synced automatically:
+
+```
+flutter packages pub run build_runner watch
+```
+**Step 4:**
+
+Now You can run project press ```F5``` or run command ```Flutter run```
+
+## Challenge for SkinX Features:
+* Login
+* Home
+* Search
+* Library
+* Playlist Detail
+* Create Playlist
+* Add Items to Playlist
